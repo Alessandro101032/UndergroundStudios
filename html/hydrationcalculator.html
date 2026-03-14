@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/hydrationcalculator.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+
+<style>
+    body{
+    text-align:center;
+    }
+    
+    input{
+    padding:10px;
+    font-size:16px;
+    margin:10px;
+    }
+    #result{
+    font-size:20px;
+    margin-top:20px;
+    font-weight:bold;
+    }
+    button {
+        background: #4e0a7a;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background: #8937c0;
+    }
+    .h1{
+       color: #b184cf; 
+       text-siz
+    }
+</style>
+
+</head>
+<body>
+<div class="nav">
+        <div class="logo">
+            <a href="" style="text-decoration: none;">logo</a>
+        </div>
+        <div class="pages">
+            <a href="./index.html" style="text-decoration: none;">Home</a>
+            <a href="./shopmain.html" style="text-decoration: none;">Shop</a>
+            <a href="./about.html" style="text-decoration: none;">About</a>
+            <a href="" style="text-decoration: none;">idk</a>
+            <a href="./contact.html" style="text-decoration: none;">Contact</a>
+        </div>
+    </div>
+
+    <h1 class="h1">Daily Hydration Calculator</h1>
+    <p>Enter your weight in kg:</p>
+    <input type="number" id="weight" placeholder="Weight in kg">
+    <br>
+    <button onclick="calculateWater()">Calculate</button>
+    <div id="result"></div>
+
+    <script>
+    function calculateWater(){
+    let weight = document.getElementById("weight").value;
+    let water = weight * 35;
+    let liters = (water/1000).toFixed(2);
+    document.getElementById("result").innerHTML =
+    "You should drink about " + liters + " liters of water per day.";
+    }
+    </script>
+</body>
+</html>
