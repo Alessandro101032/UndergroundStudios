@@ -1,5 +1,5 @@
 body {
-    background-color: #121212;
+    background-color:  #1e1e1e;
     color: white;
     margin: 0;
     padding: 0;
@@ -27,7 +27,7 @@ body {
     min-height: 300px;
     margin: 40px auto;
     padding: 20px;
-    background: #1e1e1e;
+    background: #121212;
     border-radius: 2px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     margin-bottom: 80px;
@@ -43,7 +43,7 @@ body {
     width:300px;
     min-height: 100px;
     padding: 10px;
-    background: #1e1e1e;
+    background: #121212;
     border-radius: 2px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     text-align: center;
@@ -61,7 +61,7 @@ body {
     flex:1;
     justify-content: center;
     align-content: center;
-    background: #1e1e1e;
+    background: #121212;
     border-radius: 2px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     margin-left: 100px;
