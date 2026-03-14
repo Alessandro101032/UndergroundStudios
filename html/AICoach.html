@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>AI Coach</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #EF9475;   
+            --bg: #F3F3FE;       
+            --navy: #15124A;      
+            --royal: #3C1680;     
+            --magenta: #741E7F;   
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: #d8d8f0;
+            color: var(--navy);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0; padding: 0;
+            display: flex; justify-content: center;
+        }
+
+        #app-shell {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 90px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+        }
+
+        /* App Header */
+        .app-header {
+            padding: 40px 20px 20px;
+            background: linear-gradient(180deg, rgba(60, 22, 128, 0.05) 0%, transparent 100%);
+        }
+
+        .app-header h1 { margin: 0; font-size: 1.8rem; font-weight: 800; color: var(--navy); }
+        .app-header p { margin: 5px 0 0 0; font-size: 0.85rem; color: var(--magenta); font-weight: 600; }
+
+        .container { padding: 0 20px; }
+
+        /* Form Styling */
+        .input-group {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(21, 18, 74, 0.03);
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--magenta);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .grid-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        input[type="number"], select, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: var(--bg);
+            font-family: inherit;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        
+        .pill-toggle {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pill-btn {
+            background: var(--bg);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--royal);
+            cursor: pointer;
+        }
+
+        .pill-btn.active {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        /* Action Button */
+        .btn-generate {
+            background: var(--accent);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 18px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 800;
+            margin-top: 10px;
+            box-shadow: 0 10px 20px rgba(239, 148, 117, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .ai-result {
+            margin-top: 30px;
+            border-top: 2px dashed #cbd5e1;
+            padding-top: 30px;
+        }
+
+        .result-card {
+            background: var(--navy);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 15px;
+        }
+
+        .result-card h3 { margin: 0 0 10px 0; color: var(--accent); font-size: 1.1rem; }
+        .result-card ul { margin: 0; padding: 0; list-style: none; font-size: 0.85rem; opacity: 0.9; }
+        .result-card li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .result-card li::before { content: "•"; color: var(--accent); font-weight: bold; }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 440px;
+            background: var(--navy);
+            border-radius: 22px;
+            height: 65px;
+            display: flex; justify-content: space-around; align-items: center;
+            z-index: 1000;
+        }
+        .nav-item { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.65rem; font-weight: 600; text-align: center; }
+        .nav-item.active { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div id="app-shell">
+        <header class="app-header">
+            <h1>AI Coach</h1>
+            <p>Intelligence-Driven Transformation</p>
+        </header>
+
+        <main class="container">
+            
+            <div class="input-group">
+                <label>Physical Profile</label>
+                <div class="grid-inputs">
+                    <div>
+                        <input type="number" placeholder="Age">
+                    </div>
+                    <div>
+                        <select>
+                            <option>Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="number" placeholder="Weight (kg)">
+                    </div>
+                    <div>
+                        <input type="number" placeholder="Height (cm)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Experience Level</label>
+                <div class="pill-toggle">
+                    <button class="pill-btn">Beginner</button>
+                    <button class="pill-btn active">Intermediate</button>
+                    <button class="pill-btn">Advanced</button>
+                </div>
+                <br>
+                <label>Primary Goal</label>
+                <div class="pill-toggle">
+                    <button class="pill-btn active">Hypertrophy</button>
+                    <button class="pill-btn">Strength</button>
+                    <button class="pill-btn">Fat Loss</button>
+                    <button class="pill-btn">Endurance</button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Injuries or Limitations</label>
+                <input type="text" placeholder="e.g. Lower back pain, knee issues">
+                <br><br>
+                <label>Available Equipment</label>
+                <div class="pill-toggle">
+                    <button class="pill-btn active">Full Gym</button>
+                    <button class="pill-btn">Dumbbells Only</button>
+                    <button class="pill-btn">Bodyweight</button>
+                </div>
+            </div>
+
+            <button class="btn-generate">
+                ✨ Generate Personalized Plan
+            </button>
+
+            <section class="ai-result">
+                <span class="section-label" style="display:block; margin-bottom:15px; color:var(--magenta); font-size:0.75rem; font-weight:800;">CURRENT AI SUGGESTIONS</span>
+                
+                <div class="result-card">
+                    <h3>PPL Weekly Split</h3>
+                    <ul>
+                        <li>Push (Chest/Shoulders/Triceps)</li>
+                        <li>Pull (Back/Biceps)</li>
+                        <li>Legs (Quads/Hams/Calves)</li>
+                        <li>Rest / Active Recovery</li>
+                    </ul>
+                </div>
+
+                <div class="result-card" style="background: var(--royal);">
+                    <h3>Progression Tip</h3>
+                    <p style="font-size: 0.85rem; line-height: 1.4; opacity: 0.9;">Focus on <b>Progressive Overload</b>. Aim to increase your weight by 2.5% every 2 weeks for compounds.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
