@@ -1,0 +1,282 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Community Chat</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #EF9475;    
+            --bg: #F3F3FE;        
+            --navy: #15124A;     
+            --royal: #3C1680;     
+            --magenta: #741E7F;   
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: #d8d8f0;
+            color: var(--navy);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0; padding: 0;
+            display: flex; justify-content: center;
+        }
+
+        #app-shell {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 90px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+        }
+
+        
+        .app-header {
+            padding: 40px 20px 10px;
+            background: var(--bg);
+        }
+
+        .app-header h1 { margin: 0; font-size: 1.5rem; font-weight: 800; color: var(--navy); }
+
+        
+        .match-section {
+            padding: 15px 0 20px 20px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--magenta);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .match-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-right: 20px;
+            scrollbar-width: none;
+        }
+        .match-scroll::-webkit-scrollbar { display: none; }
+
+        .profile-bubble {
+            flex: 0 0 75px;
+            text-align: center;
+        }
+
+        .avatar-container {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            background: var(--white);
+            padding: 3px;
+            border: 3px solid var(--accent); 
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .avatar {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: #cbd5e1;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; color: var(--royal);
+        }
+
+        .match-percent {
+            position: absolute;
+            bottom: -5px; right: -5px;
+            background: var(--navy);
+            color: var(--white);
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .profile-bubble span { font-size: 0.7rem; font-weight: 600; color: var(--navy); }
+
+        
+        .channels { padding: 10px 20px; }
+
+        .channel-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 12px rgba(21, 18, 74, 0.03);
+            transition: transform 0.2s;
+        }
+
+        .channel-card:active { transform: scale(0.98); background: #fafafa; }
+
+        .channel-icon {
+            width: 45px; height: 45px;
+            border-radius: 12px;
+            background: var(--bg);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .channel-info { flex: 1; }
+        .channel-info h3 { margin: 0; font-size: 1rem; color: var(--royal); }
+        .channel-info p { margin: 0; font-size: 0.75rem; color: #64748b; }
+
+        .unread-badge {
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        
+        .mod-label {
+            position: fixed;
+            top: 50px; right: 20px;
+            background: rgba(116, 30, 127, 0.1);
+            color: var(--magenta);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+       
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 440px;
+            background: var(--navy);
+            border-radius: 22px;
+            height: 65px;
+            display: flex; justify-content: space-around; align-items: center;
+            box-shadow: 0 10px 30px rgba(21, 18, 74, 0.2);
+            z-index: 1000;
+        }
+        .nav-item { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.65rem; font-weight: 600; text-align: center; }
+        .nav-item.active { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div id="app-shell">
+        <div class="mod-label">Mod Tools On</div>
+
+        <header class="app-header">
+            <h1>Community</h1>
+        </header>
+
+        <section class="match-section">
+            <span class="section-label"> Team matches based on your stats</span>
+            <div class="match-scroll">
+                
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar">JD</div>
+                        <div class="match-percent">98%</div>
+                    </div>
+                    <span>John D.</span>
+                </div>
+
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar" style="background: #fee2e2;">SK</div>
+                        <div class="match-percent">94%</div>
+                    </div>
+                    <span>Sarah K.</span>
+                </div>
+
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar" style="background: #fef9c3;">MI</div>
+                        <div class="match-percent">89%</div>
+                    </div>
+                    <span>Mike I.</span>
+                </div>
+
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar" style="background: #dcfce7;">AL</div>
+                        <div class="match-percent">85%</div>
+                    </div>
+                    <span>Alex L.</span>
+                </div>
+
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar" style="background: #e0f2fe;">RV</div>
+                        <div class="match-percent">82%</div>
+                    </div>
+                    <span>Ria V.</span>
+                </div>
+
+            </div>
+        </section>
+
+        <main class="channels">
+            <span class="section-label">Active Channels</span>
+            
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🏋️</div>
+                <div class="channel-info">
+                    <h3>Training</h3>
+                    <p>Share routines & form checks</p>
+                </div>
+                <div class="unread-badge">12</div>
+            </a>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🥗</div>
+                <div class="channel-info">
+                    <h3>Nutrition</h3>
+                    <p>Meal prep & macro tracking</p>
+                </div>
+            </a>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🤕</div>
+                <div class="channel-info">
+                    <h3>Injury Room</h3>
+                    <p>Recovery tips & support</p>
+                </div>
+                <div class="unread-badge">3</div>
+            </a>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🔥</div>
+                <div class="channel-info">
+                    <h3>Progress Sharing</h3>
+                    <p>Milestones & PRs</p>
+                </div>
+            </a>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🏙️</div>
+                <div class="channel-info">
+                    <h3>Local Discussions</h3>
+                    <p>Meetups in Timișoara</p>
+                </div>
+            </a>
+
+        </main>
+    </div>
+
+</body>
+</html>
