@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+    
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#111;
+    padding: 15px 50px; 
+    height: 50px;
+}
+.pages{
+    display: flex;
+    gap: 30px;
+}
+.nav a {
+    text-decoration: none;
+    color:#4e0a7a;
+    font-size: 20px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.nav a:hover {
+    color:  #8937c0;
+}
