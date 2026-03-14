@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>SportEvents</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #EF9475;    
+            --bg: #F3F3FE;        
+            --navy: #15124A;     
+            --royal: #3C1680;     
+            --magenta: #741E7F;   
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: #e0e0f0; 
+            color: var(--navy);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0; padding: 0;
+            display: flex; justify-content: center;
+        }
+
+        #app-shell {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 100px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+        }
+
+        /* Sticky Header with Filters */
+        .app-header {
+            position: sticky;
+            top: 0;
+            background: rgba(243, 243, 254, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 40px 20px 15px;
+            z-index: 100;
+        }
+
+        .app-header h1 { margin: 0; font-size: 1.6rem; font-weight: 800; color: var(--royal); }
+        .location-tag { font-size: 0.85rem; color: var(--magenta); font-weight: 600; margin-bottom: 15px; display: block; }
+
+        
+        .filter-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 5px 0;
+            scrollbar-width: none; 
+        }
+        .filter-scroll::-webkit-scrollbar { display: none; } 
+
+        .filter-pill {
+            background: var(--white);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid transparent;
+        }
+        .filter-pill.active { background: var(--navy); color: var(--white); }
+
+       
+        .sub-filters {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding: 0 5px;
+        }
+        .select-filter {
+            background: none;
+            border: none;
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        
+        .event-list { padding: 10px 20px; }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 24px rgba(21, 18, 74, 0.04);
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .date-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg);
+            padding: 8px 12px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 50px;
+        }
+        .date-badge .day { display: block; font-weight: 800; font-size: 1.1rem; color: var(--royal); }
+        .date-badge .month { display: block; font-size: 0.6rem; text-transform: uppercase; font-weight: 700; color: var(--magenta); }
+
+        .event-type {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .event-card h2 { margin: 0 0 10px 0; font-size: 1.2rem; max-width: 80%; line-height: 1.2; }
+
+        .event-info { display: flex; gap: 15px; margin-bottom: 15px; }
+        .info-bit { font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 5px; }
+
+        .btn-register {
+            background: var(--accent);
+            color: white;
+            width: 100%;
+            border: none;
+            padding: 12px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-register:active { opacity: 0.8; transform: scale(0.98); }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 440px;
+            background: var(--navy);
+            border-radius: 22px;
+            height: 65px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(21, 18, 74, 0.2);
+            z-index: 1000;
+        }
+        .nav-item { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.65rem; font-weight: 600; text-align: center; }
+        .nav-item.active { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div id="app-shell">
+        <header class="app-header">
+            <span class="location-tag">📍 Near Timișoara, RO</span>
+            <h1>Sport Events</h1>
+            
+            <div class="filter-scroll">
+                <div class="filter-pill active">All Events</div>
+                <div class="filter-pill">Competitions</div>
+                <div class="filter-pill">Marathons</div>
+                <div class="filter-pill">Tournaments</div>
+                <div class="filter-pill">Fitness</div>
+            </div>
+
+            <div class="sub-filters">
+                <button class="select-filter">Distance: 10km ▾</button>
+                <button class="select-filter">Date: This Month ▾</button>
+            </div>
+        </header>
+
+        <main class="event-list">
+            
+            <article class="event-card">
+                <div class="date-badge">
+                    <span class="day">22</span>
+                    <span class="month">Mar</span>
+                </div>
+                <span class="event-type">Marathon</span>
+                <h2>City Spring Half-Marathon</h2>
+                <div class="event-info">
+                    <div class="info-bit">📍 Central Park</div>
+                    <div class="info-bit">🏃 2.4km away</div>
+                </div>
+                <button class="btn-register">Register Now</button>
+            </article>
+
+            <article class="event-card">
+                <div class="date-badge">
+                    <span class="day">28</span>
+                    <span class="month">Mar</span>
+                </div>
+                <span class="event-type">Tournament</span>
+                <h2>3x3 Streetball Challenge</h2>
+                <div class="event-info">
+                    <div class="info-bit">📍 West Arena</div>
+                    <div class="info-bit">🏀 5.1km away</div>
+                </div>
+                <button class="btn-register">Join Team</button>
+            </article>
+
+            <article class="event-card">
+                <div class="date-badge">
+                    <span class="day">02</span>
+                    <span class="month">Apr</span>
+                </div>
+                <span class="event-type">Fitness Event</span>
+                <h2>Sunrise Yoga & HIIT</h2>
+                <div class="event-info">
+                    <div class="info-bit">📍 River Meadow</div>
+                    <div class="info-bit">🧘 1.2km away</div>
+                </div>
+                <button class="btn-register" style="background: var(--royal);">Book Spot</button>
+            </article>
+
+            <article class="event-card">
+                <div class="date-badge">
+                    <span class="day">15</span>
+                    <span class="month">Apr</span>
+                </div>
+                <span class="event-type">Competition</span>
+                <h2>Regional Amateur Tennis Open</h2>
+                <div class="event-info">
+                    <div class="info-bit">📍 North Courts</div>
+                    <div class="info-bit">🎾 8.0km away</div>
+                </div>
+                <button class="btn-register">View Brackets</button>
+            </article>
+
+        </main>
+    </div>
+
+</body>
+</html>

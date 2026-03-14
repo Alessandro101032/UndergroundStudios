@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Supplements Wiki</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #EF9475;    
+            --bg: #F3F3FE;        
+            --navy: #15124A;      
+            --royal: #3C1680;     
+            --magenta: #741E7F;   
+            --white: #ffffff;
+            --safe-area: 20px;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--navy);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        
+        #app-shell {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 100px; 
+        }
+
+        
+        .app-header {
+            position: sticky;
+            top: 0;
+            background: rgba(243, 243, 254, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px var(--safe-area) 20px;
+            z-index: 100;
+        }
+
+        .app-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--royal);
+        }
+
+        .search-bar {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            color: #A0AEC0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        
+        .feed { padding: 0 var(--safe-area); }
+
+        .sup-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 24px rgba(21, 18, 74, 0.04);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .sup-card:active { transform: scale(0.97); }
+
+        .sup-tag {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--magenta);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .sup-card h2 {
+            margin: 0 0 8px 0;
+            font-size: 1.25rem;
+            color: var(--navy);
+        }
+
+        .sup-card p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .grid-stat {
+            background: var(--bg);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .grid-stat label {
+            display: block;
+            font-size: 0.6rem;
+            color: var(--berry);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .grid-stat span {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .risk-pill {
+            background: rgba(239, 148, 117, 0.1);
+            color: var(--accent);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 440px;
+            background: var(--navy);
+            border-radius: 20px;
+            height: 65px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(21, 18, 74, 0.3);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.7rem;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-item.active { color: var(--accent); }
+        .nav-item i { display: block; font-size: 1.2rem; margin-bottom: 2px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="app-shell">
+        <header class="app-header">
+            <h1>Supplements Wiki</h1>
+            <div class="search-bar">Search supplements...</div>
+        </header>
+
+        <main class="feed">
+            
+            <div class="sup-card">
+                <span class="sup-tag">Recovery & Performance</span>
+                <h2>Creatine Monohydrate</h2>
+                <p>Most researched supplement for muscle energy and brain health.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>S-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>5g Daily</span></div>
+                </div>
+                <div class="risk-pill">⚠️ Drink plenty of water</div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Sleep & Stress</span>
+                <h2>Magnesium Glycinate</h2>
+                <p>The "calming" magnesium. High bioavailability and easy on the stomach.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>A-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>300mg</span></div>
+                </div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Immune Health</span>
+                <h2>Vitamin D3</h2>
+                <p>Supports bone health and immune resilience.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>A-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>2000 IU</span></div>
+                </div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Cognition</span>
+                <h2>L-Theanine</h2>
+                <p>Promotes relaxation without drowsiness. Stacks well with caffeine.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>B-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>200mg</span></div>
+                </div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Heart Health</span>
+                <h2>Omega-3 Fish Oil</h2>
+                <p>Reduces inflammation and supports cardiovascular longevity.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>A-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>1000mg</span></div>
+                </div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Adaptogen</span>
+                <h2>Ashwagandha</h2>
+                <p>Helps the body manage cortisol and adapt to stress.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>B-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>600mg</span></div>
+                </div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Longevity</span>
+                <h2>Zinc</h2>
+                <p>Essential mineral for hormone health and DNA synthesis.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>A-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>15mg</span></div>
+                </div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Gut Health</span>
+                <h2>Probiotics</h2>
+                <p>Supports the microbiome and improves nutrient absorption.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>B-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>20B CFU</span></div>
+                </div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Vitality</span>
+                <h2>Vitamin B12</h2>
+                <p>Crucial for energy metabolism and nervous system health.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>A-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>500mcg</span></div>
+                </div>
+            </div>
+
+            <div class="sup-card">
+                <span class="sup-tag">Antioxidant</span>
+                <h2>Curcumin</h2>
+                <p>Powerful anti-inflammatory derived from turmeric.</p>
+                <div class="app-grid">
+                    <div class="grid-stat"><label>Evidence</label><span>B-Tier</span></div>
+                    <div class="grid-stat"><label>Dosage</label><span>500mg</span></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>
