@@ -1,68 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact • PerformX</title>
 
-    <link rel="stylesheet" href="/css/font.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/font.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/css/contact.css">
-<link rel="stylesheet" href="/css/navbar.css">
-
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/contact.css" />
 </head>
 <body>
-<div class="nav-wrapper">
+  <div class="nav-wrapper">
     <nav class="nav">
-        <a href="#" class="logo">
-            <img class="logo-img" src="images/logo_no_background.png" alt="PerformX Logo">
-        </a>
+      <a href="./index.html" class="logo">
+        <img class="logo-img" src="images/logo_no_background.png" alt="PerformX Logo" />
+      </a>
 
-        <div class="pages">
-            <a href="./index.html">Home</a>
-            <a href="./shopmain.html">Shop</a>
-            <a href="./about.html">About</a>
-            <a href="#">Map</a>
-            <a href="./contact.html" class="nav-cta">Contact</a>
-        </div>
+      <div class="pages">
+        <a href="./index.html">Home</a>
+        <a href="./shopmain.html">Shop</a>
+        <a href="./about.html">About</a>
+        <a href="./map.html">Map</a>
+        <a href="./contact.html" class="nav-cta">Contact</a>
+      </div>
     </nav>
-</div>
+  </div>
 
-    <div class="contact3">
-        <form
-          class="contact-form" method="POST"
-          action="https://script.google.com/macros/s/AKfycbzDcjauZGtn9nplRewCgMJ1WJSHnZjhCmmRwAB80anZaqa1upyCe-NHGoB-FNKhh44/exec ">
-        <h1 style="text-align: center">Contactează-ne</h1> <br>
-          <div class="cont1">
-            <h3>Name</h3>
-            <h3>Surname</h3>
-          </div>
-          <div class="cont2">
-            <input class="sty" name="Name" type="text" placeholder="Name" required/>
-            <input class="sty" name="Surname" type="text" placeholder="Surname" required/>
-          </div>
-          <div class="cont3">
-            <h3>Email</h3>
-            <h3>Phone Number</h3>
-          </div>
-          <div class="cont4">
-            <input class="sty" name="Email" type="email" placeholder="Email" required/>
-            <input class="sty" name="Phone Number" type="tel" placeholder="Phone Number" required/>
-          </div>
-          <div class="cont5">
-            <h3>City</h3>
-            <h3>Others</h3>
-          </div>
-          <div class="cont6">
-            <input class="sty" name="City" type="text" placeholder="City" required/>
-            <input class="sty" name="Others" type="text" placeholder="Others"/>
-          </div> <br><br>
-          <button class="button" type="submit">Send</button>
-        </form>
+  <div class="contact3">
+    <form class="contact-form" method="POST" action="https://script.google.com/macros/s/AKfycbzDcjauZGtn9nplRewCgMJ1WJSHnZjhCmmRwAB80anZaqa1upyCe-NHGoB-FNKhh44/exec">
+      <h1>Contactează-ne</h1>
+
+      <div class="form-grid">
+        <div class="form-field">
+          <label for="firstName">Name</label>
+          <input class="input" id="firstName" name="Name" type="text" placeholder="John" required />
         </div>
 
+        <div class="form-field">
+          <label for="lastName">Surname</label>
+          <input class="input" id="lastName" name="Surname" type="text" placeholder="Doe" required />
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input class="input" id="email" name="Email" type="email" placeholder="you@example.com" required />
+        </div>
+
+        <div class="form-field">
+          <label for="phone">Phone Number</label>
+          <input class="input" id="phone" name="Phone Number" type="tel" placeholder="(+40) 712 345 678" required />
+        </div>
+
+        <div class="form-field">
+          <label for="city">City</label>
+          <input class="input" id="city" name="City" type="text" placeholder="București" required />
+        </div>
+
+        <div class="form-field">
+          <label for="others">Others</label>
+          <input class="input" id="others" name="Others" type="text" placeholder="Optional details" />
+        </div>
+
+        <div class="form-field full">
+          <button class="button" type="submit">Send</button>
+        </div>
+      </div>
+
+      <p class="helper">Trimite formularul și te vom contacta în cel mai scurt timp.</p>
+    </form>
+  </div>
 </body>
 </html>
