@@ -3,7 +3,7 @@
     align-items: center;
     flex-direction: column;
     width: 300px;
-    background-color:rgb(0, 0, 0) ;
+    background-color:#3F3BDF ;
     padding: 15px;
     border-radius: 8px;
 
@@ -65,7 +65,7 @@
     background-color:rgb(0, 0, 0) ;
     padding:15px;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgb(92, 88, 88);
+    box-shadow: 0 5px 15px rgb(139, 108, 108);
 }
 .rand5{
     display: flex;
@@ -78,7 +78,7 @@
 }
 .a{
     text-decoration: none;
-    color:black;
+    color:rgb(0, 0, 0);
 }
 .a:visited{
     color:black;
@@ -89,9 +89,7 @@
 .a:active{
     color: black;
 }
-.volan{
-    text-align: center;
-}
+
 .produse {
     display: flex;
     flex-wrap: wrap;
@@ -105,19 +103,19 @@
 }
 
 .produs {
-    background-color: #111;
+    background-color: #070619;
     border-radius: 5px;
     padding: 20px;
     text-align: center;
     width: 300px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(38, 48, 180, 0.37);
     letter-spacing: 3px;
 }
 
 .produs:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 15px #421c5c;
 }
 .produs img{
     width: 100%;
