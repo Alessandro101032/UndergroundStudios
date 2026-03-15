@@ -154,3 +154,38 @@
         position: static;
     }
 }
+.wiki-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #5a1590 0%, #8937c0 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 18px 36px;
+    border-radius: 50px; /* Pill shape */
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 30px rgba(137, 55, 192, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wiki-cta-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(137, 55, 192, 0.4);
+    filter: brightness(1.1);
+}
+
+.wiki-cta-btn:active {
+    transform: translateY(-1px);
+}
+
+.wiki-cta-btn .arrow {
+    transition: transform 0.3s ease;
+}
+
+.wiki-cta-btn:hover .arrow {
+    transform: translateX(5px); /* Arrow slides right on hover */
+}
