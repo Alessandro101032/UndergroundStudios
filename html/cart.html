@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PerformX | Cart</title>
+
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+
+<div class="nav-wrapper">
+    <nav class="nav">
+        <a href="#" class="logo">
+            <img class="logo-img" src="./images/logo_no_background.png" alt="PerformX Logo">
+        </a>
+        <div class="pages">
+            <a href="./index.html">Home</a>
+            <a href="./shopmain.html" class="active">Shop</a>
+            <a href="./about.html">About</a>
+            <a href="./body.html">Body</a>
+            <a href="./map.html">Map</a>
+        </div>
+    </nav>
+</div>
+
+<div class="cart-page">
+
+    <div class="cart-header">
+        <span class="label">Coșul tău</span>
+        <h1>Cart</h1>
+        <p id="cart-count">0 produse în coș</p>
+    </div>
+
+    <div class="cart-left">
+        <div class="cart-items" id="cart-items">
+            <div class="cart-items-header">
+                <span>Produs</span>
+                <span>Cantitate</span>
+                <span>Preț</span>
+                <span></span>
+            </div>
+            <div id="cart-list"></div>
+            <div class="cart-empty" id="cart-empty" style="display:none">
+                <div class="empty-icon">🛒</div>
+                <p>Coșul tău este gol</p>
+                <a href="./shopmain.html" class="btn-shop">Înapoi la Shop</a>
+            </div>
+        </div>
+
+        <div class="coupon-row">
+            <input type="text" class="coupon-input" id="coupon-input" placeholder="Cod de reducere...">
+            <button class="coupon-btn" onclick="applyCoupon()">Aplică</button>
+        </div>
+    </div>
+
+    <div class="cart-summary">
+        <div class="summary-title">Sumar comandă</div>
+
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="subtotal">0.00 RON</span>
+        </div>
+        <div class="summary-line">
+            <span>Livrare</span>
+            <span id="shipping">Gratuit</span>
+        </div>
+        <div class="summary-line discount-line" id="discount-row" style="display:none">
+            <span>Reducere</span>
+            <span id="discount-val" style="color:#4ade80">-0.00 RON</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-total">
+            <span>Total</span>
+            <span id="total">0.00 RON</span>
+        </div>
+
+        <button class="checkout-btn" id="checkout-btn" onclick="checkout()">
+            Finalizează comanda →
+        </button>
+
+        <a href="./shopmain.html" class="continue-link">← Continuă cumpărăturile</a>
+
+        <div class="secure-badge">
+            <span>🔒</span>
+            <span>Plată 100% securizată</span>
+        </div>
+    </div>
+
+</div>
+
+<script src="../js/cart.js"></script>
+</body>
+</html>
