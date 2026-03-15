@@ -49,7 +49,7 @@ body {
     font-weight: 900;
     line-height: 1;
     background: linear-gradient(135deg, #fff 30%, #d280f0);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
