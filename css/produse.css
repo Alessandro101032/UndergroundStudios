@@ -43,6 +43,7 @@
   .volan{
   font-size:15px;
   margin:10px 0;
+  color: white;
   }
   .price{
   color:var(--purple-light);
