@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PerformX – Calisthenics Wiki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/body.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+</head>
+<body>
+
+<div class="nav-wrapper">
+    <nav class="nav">
+        <a href="./index.html" class="logo" aria-label="PerformX Home">
+            <img class="logo-img" src="./images/logo_no_background.png" alt="PerformX Logo">
+        </a>
+
+        <div class="pages">
+            <a href="./index.html" >Home</a>
+            <a href="./shopmain.html">Shop</a>
+            <a href="./about.html">About</a>
+            <a href="./body.html"  class="active" >Body</a>
+            <a href="./map.html">Map</a>
+            <a href="./contact.html" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+</div>
+
+<div class="app">
+  <div class="left-panel">
+    <div>
+      <div class="panel-title">Vedere</div>
+      <div class="view-toggle">
+        <button class="vbtn active" id="btn-front" onclick="setView('front')">Față</button>
+        <button class="vbtn" id="btn-back" onclick="setView('back')">Spate</button>
+      </div>
+    </div>
+    <div>
+      <div class="panel-title">Grupe musculare</div>
+      <div class="muscle-list" id="muscle-list"></div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div class="panel-title" style="margin-bottom:0">Selectate</div>
+        <button class="reset-btn" onclick="resetAll()">Resetează</button>
+      </div>
+      <div class="chips-wrap" id="chips">
+        <span class="empty-chips">Nicio grupă selectată</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="center">
+    <div class="body-label">Selectează grupele musculare</div>
+    <div class="body-container" id="body-container"></div>
+    <div style="margin-top:20px;font-size:12px;color:var(--muted2);text-align:center">Apasă pe o grupă pentru exerciții fără echipament</div>
+  </div>
+
+  <div class="right-panel">
+    <div class="rp-header">
+      <div class="rp-title" id="rp-title">Exerciții</div>
+      <div class="rp-sub" id="rp-sub">Selectează o grupă din corp</div>
+    </div>
+    <div class="rp-filters" id="rp-filters" style="display:none">
+      <button class="filter-btn active" onclick="setFilter('all',this)">Toate</button>
+      <button class="filter-btn" onclick="setFilter('Începător',this)">Începător</button>
+      <button class="filter-btn" onclick="setFilter('Intermediar',this)">Intermediar</button>
+      <button class="filter-btn" onclick="setFilter('Avansat',this)">Avansat</button>
+    </div>
+    <div id="ex-container" style="flex:1;overflow-y:auto;display:flex;flex-direction:column">
+      <div class="rp-empty">
+        <div class="big-icon">🤸</div>
+        <p>Apasă pe o grupă musculară pentru exerciții calisthenics gratuite</p>
+      </div>
+    </div>
+    <div class="rp-footer">
+      <button class="gen-btn" id="gen-btn" disabled onclick="generatePlan()">Generează plan calisthenics →</button>
+    </div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModalDirect()">×</button>
+    <div class="modal-icon" id="m-icon"></div>
+    <div class="modal-name" id="m-name"></div>
+    <div class="modal-muscle" id="m-muscle"></div>
+    <div class="modal-desc" id="m-desc"></div>
+    <div class="modal-meta">
+      <div class="meta-card"><div class="meta-label">Serii</div><div class="meta-value" id="m-sets"></div></div>
+      <div class="meta-card"><div class="meta-label">Repetări</div><div class="meta-value" id="m-reps"></div></div>
+      <div class="meta-card"><div class="meta-label">Pauză</div><div class="meta-value" id="m-rest"></div></div>
+      <div class="meta-card"><div class="meta-label">Dificultate</div><div class="meta-value" id="m-diff"></div></div>
+    </div>
+    <div class="modal-tips">
+      <div class="modal-tips-title">Sfaturi de execuție</div>
+      <ul id="m-tips"></ul>
+    </div>
+  </div>
+</div>
+
+  <script src="../js/body.js"></script>
+</body>
+</html>
