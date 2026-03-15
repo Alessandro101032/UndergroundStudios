@@ -126,7 +126,6 @@
     byId('bmr').textContent = bmr || '-';
     byId('tdee').textContent = tdee || '-';
     byId('target').textContent = target || '-';
-    // store calculated so macros can use
     const merged = Object.assign({}, p, { bmr, tdee, target });
     saveProfile(merged);
   }
@@ -164,7 +163,7 @@
     const maxW = Math.max(...data.map(d=>d.weightKg));
     const range = Math.max(0.1, maxW - minW);
 
-    // x mapping by index
+
     ctx.strokeStyle = '#e0e0e0';
     ctx.beginPath();
     ctx.moveTo(padding, padding);
@@ -192,23 +191,23 @@
     });
   }
 
-  // events
+
   document.addEventListener('DOMContentLoaded', ()=>{
-    // ensure session present; navbar handled by auth.js
+
     renderProfile();
 
     // default log date today for convenience
     const ld = byId('logDate');
     if(ld && !ld.value){ ld.value = new Date().toISOString().slice(0,10); }
 
-    // react to unit changes: update labels and convert visible inputs
+
     const uw = byId('unitsWeight');
     const uh = byId('unitsHeight');
     if(uw){
       uw.addEventListener('change', ()=>{
         const newU = uw.value;
         if(newU!==currUnits.weight){
-          // convert visible inputs preserving meaning
+
           const wEl = byId('weight');
           const lwEl = byId('logWeight');
           const wVal = parseFloat(wEl.value);
@@ -217,7 +216,7 @@
           if(Number.isFinite(lwVal)) lwEl.value = convertValue(lwVal, currUnits.weight, newU, 'weight').toFixed(1);
           currUnits.weight = newU;
           setUnitLabels();
-          // persist units selection
+
           const p = readProfile(); p.units = p.units||{}; p.units.weight = newU; saveProfile(p);
         }
       });
@@ -255,11 +254,11 @@
       prof.kcalLogs = prof.kcalLogs || [];
       if(wIn){
         let w = parseFloat(wIn);
-        // convert to kg if UI in lb
+
         const uiW = byId('unitsWeight').value;
         if(uiW==='lb') w = lbToKg(w);
         prof.weightHistory.push({dateISO, weightKg: w});
-        prof.weightKg = w; // update current
+        prof.weightKg = w; 
       }
       if(kIn){ prof.kcalLogs.push({dateISO, kcal: parseInt(kIn,10)}); }
       saveProfile(prof);
@@ -296,7 +295,7 @@
       fr.onload = ()=>{
         try{
           const data = JSON.parse(fr.result);
-          // minimal validation
+
           if(typeof data !== 'object') throw new Error('Invalid JSON');
           saveProfile(data);
           renderProfile();

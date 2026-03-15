@@ -1,4 +1,3 @@
-/* Auth and Navbar Dynamics using localStorage */
 (function(){
   const STORAGE_KEYS = {
     users: 'ux_users',
@@ -17,12 +16,11 @@
   function getSession(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.session)); } catch(e){ return null; } }
   function clearSession(){ localStorage.removeItem(STORAGE_KEYS.session); }
 
-  // Navbar injection
+
   function updateNavbar(){
     const nav = document.querySelector('.nav .pages');
     if(!nav) return;
 
-    // Remove any auth items previously inserted
     nav.querySelectorAll('.nav-auth').forEach(n=>n.remove());
 
     const session = getSession();
@@ -39,7 +37,7 @@
       logoutLink.addEventListener('click', (e)=>{
         e.preventDefault();
         clearSession();
-        // redirect to home
+
         window.location.href = './index.html';
       });
 
@@ -54,7 +52,7 @@
     }
   }
 
-  // Expose minimal API for login/register
+
   window.UXAuth = {
     register: function({email, password, name}){
       email = String(email||'').trim().toLowerCase();
@@ -83,3 +81,18 @@
 
   document.addEventListener('DOMContentLoaded', updateNavbar);
 })();
+
+function updateCartFab() {
+    const badge = document.getElementById('cart-fab-badge');
+    if (!badge) return;
+
+    const cart = JSON.parse(localStorage.getItem('px-cart')) || [];
+    const totalQty = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
+
+    badge.textContent = totalQty;
+    badge.setAttribute('data-count', totalQty);
+}
+
+updateCartFab();
+
+window.addEventListener('storage', updateCartFab);
