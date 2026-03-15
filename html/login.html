@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login • PerformX</title>
+
+  <link rel="stylesheet" href="../css/font.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/login.css" />
+</head>
+<body>
+  <div class="nav-wrapper">
+    <nav class="nav">
+      <a href="./index.html" class="logo">
+        <img class="logo-img" src="./images/logo_no_background.png" alt="PerformX Logo" />
+      </a>
+
+      <div class="pages">
+        <a href="./index.html">Home</a>
+        <a href="./shopmain.html">Shop</a>
+        <a href="./about.html">About</a>
+        <a href="./map.html">Map</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="auth">
+    <div class="card">
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Login</button>
+        <button class="tab" data-tab="register">Register</button>
+      </div>
+
+      <form id="loginForm" class="form active" autocomplete="on">
+        <label>Email
+          <input type="email" id="loginEmail" required placeholder="you@example.com" />
+        </label>
+        <label>Parola
+          <input type="password" id="loginPassword" required placeholder="••••••••" minlength="8" />
+        </label>
+        <button type="submit" class="btn-primary">Login</button>
+        <p class="tip">Nu ai cont? Selectează tab-ul Register.</p>
+        <p class="error" id="loginError" hidden></p>
+      </form>
+
+      <form id="registerForm" class="form" autocomplete="on">
+        <label>Nume
+          <input type="text" id="regName" required placeholder="Nume" />
+        </label>
+        <label>Email
+          <input type="email" id="regEmail" required placeholder="you@example.com" />
+        </label>
+        <label>Parolă
+          <input type="password" id="regPassword" required minlength="8" placeholder="min. 8 caractere" />
+        </label>
+        <label>Confirmă parola
+          <input type="password" id="regPassword2" required minlength="8" placeholder="repetă parola" />
+        </label>
+        <button type="submit" class="btn-primary">Creează cont</button>
+        <p class="error" id="registerError" hidden></p>
+      </form>
+    </div>
+  </main>
+
+  <script src="../js/auth.js"></script>
+  <script>
+    // tabs
+    const tabs = document.querySelectorAll('.tab');
+    const forms = document.querySelectorAll('.form');
+    tabs.forEach(t=> t.addEventListener('click', ()=>{
+      tabs.forEach(x=>x.classList.remove('active'));
+      forms.forEach(f=>f.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById(t.dataset.tab+"Form").classList.add('active');
+      // clear errors
+      document.querySelectorAll('.error').forEach(e=>{ e.hidden = true; e.textContent=''; });
+    }));
+
+    // login
+    document.getElementById('loginForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const err = document.getElementById('loginError');
+      try{
+        UXAuth.login({email, password});
+        window.location.href = './profile.html';
+      }catch(ex){ err.hidden=false; err.textContent = ex.message; }
+    });
+
+    // register
+    document.getElementById('registerForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const p1 = document.getElementById('regPassword').value;
+      const p2 = document.getElementById('regPassword2').value;
+      const err = document.getElementById('registerError');
+      if(p1 !== p2){ err.hidden=false; err.textContent = 'Parolele nu coincid'; return; }
+      try{
+        UXAuth.register({name, email, password: p1});
+        window.location.href = './profile.html';
+      }catch(ex){ err.hidden=false; err.textContent = ex.message; }
+    });
+  </script>
+</body>
+</html>

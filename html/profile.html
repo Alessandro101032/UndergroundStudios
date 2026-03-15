@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil • PerformX</title>
+
+  <link rel="stylesheet" href="../css/font.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+</head>
+<body>
+  <div class="nav-wrapper">
+    <nav class="nav">
+      <a href="./index.html" class="logo">
+        <img class="logo-img" src="./images/logo_no_background.png" alt="PerformX Logo" />
+      </a>
+
+      <div class="pages">
+        <a href="./index.html">Home</a>
+        <a href="./shopmain.html">Shop</a>
+        <a href="./about.html">About</a>
+        <a href="./map.html">Map</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="profile">
+    <section class="card">
+      <h1>Profilul meu</h1>
+      <p class="helper">Completează datele tale. Poți schimba unitățile (kg/lb, cm/in). Ținta zilnică se calculează automat din BMR + activitate + obiectiv.</p>
+      <form id="profileForm" class="grid">
+        <div>
+          <label>Sex
+            <select id="sex" aria-label="Sex">
+              <option value="male">Masculin</option>
+              <option value="female">Feminin</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Vârstă
+            <input type="number" id="age" min="10" max="100" inputmode="numeric" placeholder="ex: 28" required />
+          </label>
+        </div>
+        <div>
+          <label>Greutate
+            <div class="input-unit">
+              <input type="number" id="weight" step="0.1" inputmode="decimal" placeholder="ex: 72.5" required />
+              <span class="unit" id="unitWeightLabel">kg</span>
+            </div>
+          </label>
+        </div>
+        <div>
+          <label>Înălțime
+            <div class="input-unit">
+              <input type="number" id="height" step="0.5" inputmode="decimal" placeholder="ex: 178" required />
+              <span class="unit" id="unitHeightLabel">cm</span>
+            </div>
+          </label>
+        </div>
+        <div>
+          <label>Unități
+            <div class="units-inline">
+              <select id="unitsWeight" aria-label="Unități greutate">
+                <option value="kg">kg</option>
+                <option value="lb">lb</option>
+              </select>
+              <select id="unitsHeight" aria-label="Unități înălțime">
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+              </select>
+            </div>
+            <span class="hint">Schimbarea unităților actualizează etichetele și conversiile.</span>
+          </label>
+        </div>
+        <div class="full">
+          <label>Nivel activitate
+            <select id="activity">
+              <option value="sedentary">Sedentar · puțin sau deloc exercițiu</option>
+              <option value="light">Ușor activ · 1-3 zile/săpt</option>
+              <option value="moderate">Moderat · 3-5 zile/săpt</option>
+              <option value="active">Activ · 6-7 zile/săpt</option>
+              <option value="veryActive">Foarte activ · muncă fizică + antrenament</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Obiectiv
+            <select id="goal">
+              <option value="cut">Slăbire</option>
+              <option value="maintain">Menținere</option>
+              <option value="bulk">Creștere</option>
+            </select>
+            <span class="hint">Slăbire ≈ -500 kcal, Creștere ≈ +300-500 kcal. Poți ajusta mai jos.</span>
+          </label>
+        </div>
+        <div>
+          <label>Ajustare țintă (kcal)
+            <input type="number" id="kcalCustom" step="10" placeholder="ex: +300 sau -500" />
+            <span class="hint">Lăsat gol → se folosește ajustarea implicită din obiectiv.</span>
+          </label>
+        </div>
+        <div class="full">
+          <button type="submit" class="btn-primary">Salvează profil</button>
+        </div>
+      </form>
+
+      <div class="results">
+        <div><strong>BMR</strong>: <span id="bmr">-</span> kcal</div>
+        <div><strong>TDEE</strong>: <span id="tdee">-</span> kcal</div>
+        <div><strong>Țintă kcal/zi</strong>: <span id="target">-</span> kcal</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Log zilnic</h2>
+      <p class="helper">Înregistrează greutatea și/sau caloriile pentru ziua selectată. Lasă necompletat dacă nu vrei să adaugi acel câmp.</p>
+      <form id="logForm" class="grid">
+        <div>
+          <label>Data
+            <input type="date" id="logDate" required />
+          </label>
+        </div>
+        <div>
+          <label>Greutate
+            <div class="input-unit">
+              <input type="number" id="logWeight" step="0.1" inputmode="decimal" placeholder="ex: 72.8" />
+              <span class="unit" id="unitWeightLabel2">kg</span>
+            </div>
+          </label>
+        </div>
+        <div>
+          <label>Kcal
+            <input type="number" id="logKcal" step="1" inputmode="numeric" placeholder="ex: 2200" />
+          </label>
+        </div>
+        <div class="full">
+          <button type="submit" class="btn-primary">Adaugă</button>
+        </div>
+      </form>
+
+      <canvas id="weightChart" width="800" height="300" aria-label="Grafic greutate" role="img"></canvas>
+      <div class="logs" id="logs"></div>
+    </section>
+
+    <section class="card">
+      <h2>Macro-uri și export</h2>
+      <form id="macroForm" class="grid">
+        <div>
+          <label>Proteine (g/kg)
+            <input type="number" id="proteinPerKg" step="0.1" value="2" />
+          </label>
+        </div>
+        <div>
+          <label>Grăsimi (% kcal)
+            <input type="number" id="fatPercent" step="1" value="30" />
+          </label>
+        </div>
+        <div class="full">
+          <button type="button" id="recalcMacros" class="btn-primary">Recalculează macro-uri</button>
+        </div>
+      </form>
+      <div class="results">
+        <div><strong>Proteine</strong>: <span id="proteinG">-</span> g</div>
+        <div><strong>Grăsimi</strong>: <span id="fatG">-</span> g</div>
+        <div><strong>Carbohidrați</strong>: <span id="carbG">-</span> g</div>
+      </div>
+      
+    </section>
+  </main>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/profile.js"></script>
+</body>
+</html>
