@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coach • PerformX</title>
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/aboutus.css">
+    <link rel="stylesheet" href="../css/ai.css">
+</head>
+<body>
+<div class="nav-wrapper">
+    <nav class="nav">
+        <a href="./index.html" class="logo" aria-label="PerformX Home">
+            <img class="logo-img" src="./images/logo_no_background.png" alt="PerformX Logo">
+        </a>
+        <div class="pages">
+            <a href="./index.html">Home</a>
+            <a href="./shopmain.html">Shop</a>
+            <a href="./about.html">About</a>
+            <a href="./map.html">Map</a>
+            <a href="./login.html" class="nav-cta">Login</a>
+        </div>
+    </nav>
+</div>
+
+    <div id="app-shell">
+        <div class="main-content">
+        <header class="app-header">
+            <h1>AI Coach</h1>
+            <p>Intelligence-Driven Transformation</p>
+        </header>
+            <main class="container">
+                <form id="ai-form" autocomplete="off" style="display:flex;flex-direction:column;gap:32px;max-width:540px;margin:0 auto;">
+                    <div class="input-group">
+                        <label>Physical Profile</label>
+                        <div class="grid-inputs">
+                            <div><input type="number" name="age" placeholder="Age" min="10" max="100" required></div>
+                            <div><input type="number" name="weight" placeholder="Weight (kg)" min="30" max="200" required></div>
+                            <div><input type="number" name="height" placeholder="Height (cm)" min="120" max="230" required></div>
+                        </div>
+                        <div class="pill-toggle" id="gender-pills">
+                            <button type="button" class="pill-btn active" data-value="Male">Male</button>
+                            <button type="button" class="pill-btn" data-value="Female">Female</button>
+                            <button type="button" class="pill-btn" data-value="Other">Other</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Experience Level</label>
+                        <div class="pill-toggle" id="exp-pills">
+                            <button type="button" class="pill-btn" data-value="Beginner">Beginner</button>
+                            <button type="button" class="pill-btn active" data-value="Intermediate">Intermediate</button>
+                            <button type="button" class="pill-btn" data-value="Advanced">Advanced</button>
+                        </div>
+                        <br>
+                        <label>Primary Goal</label>
+                        <div class="pill-toggle" id="goal-pills">
+                            <button type="button" class="pill-btn active" data-value="Hypertrophy">Hypertrophy</button>
+                            <button type="button" class="pill-btn" data-value="Strength">Strength</button>
+                            <button type="button" class="pill-btn" data-value="Fat Loss">Fat Loss</button>
+                            <button type="button" class="pill-btn" data-value="Endurance">Endurance</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Injuries or Limitations</label>
+                        <input type="text" name="injuries" placeholder="e.g. Lower back pain, knee issues">
+                        <br><br>
+                        <label>Available Equipment</label>
+                        <div class="pill-toggle" id="equip-pills">
+                            <button type="button" class="pill-btn active" data-value="Full Gym">Full Gym</button>
+                            <button type="button" class="pill-btn" data-value="Dumbbells Only">Dumbbells Only</button>
+                            <button type="button" class="pill-btn" data-value="Bodyweight">Bodyweight</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Preferred Workout Days</label>
+                        <div class="pill-toggle" id="days-pills">
+                            <button type="button" class="pill-btn" data-value="Mon">Mon</button>
+                            <button type="button" class="pill-btn" data-value="Tue">Tue</button>
+                            <button type="button" class="pill-btn" data-value="Wed">Wed</button>
+                            <button type="button" class="pill-btn" data-value="Thu">Thu</button>
+                            <button type="button" class="pill-btn" data-value="Fri">Fri</button>
+                            <button type="button" class="pill-btn" data-value="Sat">Sat</button>
+                            <button type="button" class="pill-btn" data-value="Sun">Sun</button>
+                        </div>
+                    </div>
+                    <button class="btn-generate" type="submit" id="generate-btn">
+                        ✨ Generate Personalized Plan
+                    </button>
+                </form>
+                <section class="ai-result" id="ai-result" style="display:none;animation:fadeIn 0.7s;">
+                </section>
+                <style>@keyframes fadeIn { from { opacity:0; transform:translateY(30px);} to { opacity:1; transform:translateY(0);} }</style>
+                <span class="section-label">Hydration Monitor</span>
+                <div class="widget">
+                    <div class="hydration-flex">
+                        <div>
+                            <div class="water-count">0 / 3.5L</div>
+                            <span style="font-size: 0.75rem; color: #64748b;">Target for today</span>
+                        </div>
+                        <button class="btn-add-water">+</button>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.8rem; color: var(--magenta); font-weight: 600;">
+                        📍 Environment: Hot (31°C) - Target Adjusted
+                    </div>
+                </div>
+                <script>
+                // Pill button toggle logic
+                function singleSelectPills(containerId) {
+                  const pills = document.getElementById(containerId).querySelectorAll('.pill-btn');
+                  pills.forEach(btn => btn.addEventListener('click', function() {
+                    pills.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                  }));
+                }
+                function multiSelectPills(containerId) {
+                  const pills = document.getElementById(containerId).querySelectorAll('.pill-btn');
+                  pills.forEach(btn => btn.addEventListener('click', function() {
+                    btn.classList.toggle('active');
+                  }));
+                }
+                singleSelectPills('exp-pills');
+                singleSelectPills('goal-pills');
+                singleSelectPills('equip-pills');
+                singleSelectPills('gender-pills');
+                multiSelectPills('days-pills');
+
+                // Generate Plan logic
+                document.getElementById('ai-form').addEventListener('submit', function(e) {
+                  e.preventDefault();
+                  const form = e.target;
+                  const age = parseInt(form.age.value);
+                  const gender = document.querySelector('#gender-pills .pill-btn.active').dataset.value;
+                  const weight = parseInt(form.weight.value);
+                  const height = parseInt(form.height.value);
+                  const exp = document.querySelector('#exp-pills .pill-btn.active').dataset.value;
+                  const goal = document.querySelector('#goal-pills .pill-btn.active').dataset.value;
+                  const equip = document.querySelector('#equip-pills .pill-btn.active').dataset.value;
+                  const injuries = form.injuries.value;
+                  const days = Array.from(document.querySelectorAll('#days-pills .pill-btn.active')).map(b=>b.dataset.value);
+
+                  // Calculate BMR
+                  let bmr;
+                  if(gender === 'Male') {
+                    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+                  } else if(gender === 'Female') {
+                    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+                  } else {
+                    // Average
+                    bmr = (10 * weight + 6.25 * height - 5 * age + 5 + 10 * weight + 6.25 * height - 5 * age - 161) / 2;
+                  }
+
+                  // Assume moderate activity (1.55 multiplier for TDEE)
+                  let tdee = bmr * 1.55;
+
+                  // Adjust for goal
+                  let calories;
+                  if(goal === 'Hypertrophy') {
+                    calories = Math.round(tdee + 400);
+                  } else if(goal === 'Strength') {
+                    calories = Math.round(tdee + 250);
+                  } else if(goal === 'Fat Loss') {
+                    calories = Math.round(tdee - 500);
+                  } else { // Endurance
+                    calories = Math.round(tdee + 150);
+                  }
+
+                  // Macros
+                  let proteinG = goal === 'Hypertrophy' ? 2.0 : 1.8;
+                  let protein = Math.round(proteinG * weight);
+                  let proteinCal = protein * 4;
+                  let fatG = 1.0; // g/kg
+                  let fat = Math.round(fatG * weight);
+                  let fatCal = fat * 9;
+                  let carbCal = calories - proteinCal - fatCal;
+                  let carbs = Math.round(carbCal / 4);
+
+                  // Hydration (ml/day)
+                  let hydration = Math.round(weight * 35);
+
+                  // Injury risk
+                  let riskPercent = 20;
+                  if(exp === 'Beginner') riskPercent += 20;
+                  if(injuries) riskPercent += 15;
+                  if(days.length > 5) riskPercent += 10;
+                  riskPercent = Math.min(riskPercent, 80);
+                  let riskLevel = riskPercent < 30 ? 'Low' : riskPercent < 60 ? 'Medium' : 'High';
+                  let riskColor = riskPercent < 30 ? '#2D6A4F' : riskPercent < 60 ? '#F59E0B' : '#EF4444';
+
+                  // Nutrition suggestions
+                  let nextMeal, supplements;
+                  if(goal === 'Hypertrophy') {
+                    nextMeal = 'Grilled Chicken, Sweet Potato & Broccoli';
+                    supplements = 'Creatine (5g), Whey Protein (post-workout)';
+                  } else if(goal === 'Strength') {
+                    nextMeal = 'Beef Steak, Rice & Asparagus';
+                    supplements = 'Creatine (5g), BCAAs';
+                  } else if(goal === 'Fat Loss') {
+                    nextMeal = 'Grilled Turkey, Quinoa & Green Salad';
+                    supplements = 'Caffeine, Green Tea Extract';
+                  } else { // Endurance
+                    nextMeal = 'Salmon, Brown Rice & Spinach';
+                    supplements = 'Electrolyte Drink, Beta-Alanine';
+                  }
+
+                  // Injury suggestion
+                  let suggestion;
+                  if(riskPercent < 30) {
+                    suggestion = 'Your risk is low. Keep up the good work with proper form!';
+                  } else if(riskPercent < 60) {
+                    suggestion = 'Moderate risk. Focus on warm-ups and consider adding mobility work.';
+                  } else {
+                    suggestion = 'High risk detected. Reduce training volume and consult a professional.';
+                  }
+                  if(exp === 'Beginner') suggestion += ' As a beginner, prioritize learning proper technique.';
+                  if(injuries) suggestion += ' Address your injuries with rest or therapy.';
+
+                  // Simple plan generation (demo)
+                  let plan = '';
+                  if(goal==='Hypertrophy') {
+                    plan = `<div class='result-card'><h3>Hypertrophy Plan</h3><ul><li>4-5 days/week: Push/Pull/Legs split</li><li>8-12 reps, 3-4 sets per exercise</li><li>Focus on progressive overload</li><li>Include compound and isolation movements</li></ul></div>`;
+                  } else if(goal==='Strength') {
+                    plan = `<div class='result-card'><h3>Strength Plan</h3><ul><li>3-4 days/week: Full Body or Upper/Lower split</li><li>3-6 reps, 4-6 sets per exercise</li><li>Emphasize heavy compound lifts</li></ul></div>`;
+                  } else if(goal==='Fat Loss') {
+                    plan = `<div class='result-card'><h3>Fat Loss Plan</h3><ul><li>4-6 days/week: Mix resistance & cardio</li><li>12-15 reps, 2-4 sets per exercise</li><li>HIIT or steady-state cardio 2-3x/week</li></ul></div>`;
+                  } else {
+                    plan = `<div class='result-card'><h3>Endurance Plan</h3><ul><li>3-6 days/week: Full Body or circuit training</li><li>15-20 reps, 2-3 sets per exercise</li><li>Include running, cycling, or swimming</li></ul></div>`;
+                  }
+                  let daysText = days.length ? `<div class='result-card'><h3>Preferred Days</h3><ul><li>${days.join(', ')}</li></ul></div>` : '';
+                  let equipText = `<div class='result-card'><h3>Equipment</h3><ul><li>${equip}</li></ul></div>`;
+                  let injuryText = injuries ? `<div class='result-card'><h3>Injuries/Limitations</h3><ul><li>${injuries}</li></ul></div>` : '';
+                  document.getElementById('ai-result').innerHTML = `
+                    <span class='section-label' style='display:block; margin-bottom:15px; color:var(--brand-500); font-size:0.75rem; font-weight:800;'>YOUR PERSONALIZED PLAN</span>
+                    ${plan}
+                    ${daysText}
+                    ${equipText}
+                    ${injuryText}
+                    <span class="section-label">Nutrition & Supplements</span>
+                    <div class="widget">
+                        <div class="calorie-badge">${calories} <span style="font-size: 0.8rem; color: #64748b;">kcal/day</span></div>
+                        <div class="nutrition-grid">
+                            <div class="macro-pill"><label>Protein</label><span>${protein}g</span></div>
+                            <div class="macro-pill"><label>Carbs</label><span>${carbs}g</span></div>
+                            <div class="macro-pill"><label>Fats</label><span>${fat}g</span></div>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 0.85rem;">
+                            <strong>Next Meal:</strong> ${nextMeal}
+                        </div>
+                        <div style="margin-top: 10px; padding: 10px; background: rgba(162, 89, 198, 0.08); border-radius: 12px;">
+                            <span style="font-size: 0.75rem; color: var(--magenta); font-weight: 700;">SUPPLEMENTS [ON]</span>
+                            <p style="font-size: 0.8rem; margin: 5px 0;">${supplements}</p>
+                            <span class="edu-tag">Supplement info for educational use only.</span>
+                        </div>
+                    </div>
+                    <span class="section-label">Progress Chart</span>
+                    <div class="widget" style="text-align:center;">
+                        <img src="https://placehold.co/320x80/EEE/AAA?text=Progress+Chart" alt="Progress Chart" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #A259C633;">
+                        <div style="font-size:0.8rem;color:#64748b;margin-top:8px;">Track your weight, muscle mass, and more over time.</div>
+                    </div>
+                    <span class="section-label">Injury Risk Analysis</span>
+                    <div class="widget">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="font-weight: 700; font-size: 0.9rem;">Current Risk: <span style="color: ${riskColor};">${riskLevel}</span></span>
+                            <span style="font-size: 0.8rem; opacity: 0.6;">${riskPercent}%</span>
+                        </div>
+                        <div class="risk-meter">
+                            <div class="risk-fill" style="width: ${riskPercent}%; background: linear-gradient(90deg, ${riskColor}, ${riskColor}AA);"></div>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #64748b; margin: 0;">
+                            <b>Suggestion:</b> ${suggestion}
+                        </p>
+                    </div>
+                    <span class="section-label">Hydration Monitor</span>
+                    <div class="widget">
+                        <div class="hydration-flex">
+                            <div>
+                                <div class="water-count">0 / ${hydration / 1000}L</div>
+                                <span style="font-size: 0.75rem; color: #64748b;">Target for today</span>
+                            </div>
+                            <button class="btn-add-water">+</button>
+                        </div>
+                        <div style="margin-top: 15px; font-size: 0.8rem; color: var(--magenta); font-weight: 600;">
+                            📍 Environment: Hot (31°C) - Target Adjusted
+                        </div>
+                    </div>
+                  `;
+                  document.getElementById('ai-result').style.display = 'block';
+                  document.getElementById('ai-result').scrollIntoView({behavior:'smooth'});
+                });
+                </script>
+            </main>
+            <aside class="sidebar">
+                <div>
+                    <h2>AI Coach Tips</h2>
+                    <ul>
+                        <li>Consistency is key</li>
+                        <li>Track your progress</li>
+                        <li>Rest and recover</li>
+                        <li>Nutrition matters</li>
+                        <li>Stay hydrated</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+</body>
+</html>

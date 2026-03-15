@@ -26,7 +26,7 @@
             <a href="./index.html" class="active">Home</a>
             <a href="./shopmain.html">Shop</a>
             <a href="./about.html">About</a>
-            <a href="#">Map</a>
+            <a href="./map.html">Map</a>
         </div>
     </nav>
 </div>
@@ -58,6 +58,53 @@
   <div class="divider"></div>
 
   <div class="two-col">
+
+
+  <div id="hey-coach-container" style="position:fixed;bottom:32px;right:32px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+    <div id="hey-coach-bubble" style="display:none;max-width:220px;background:#fff;color:#5a1590;font-family:'Lexend',sans-serif;font-size:1rem;font-weight:600;padding:14px 20px;border-radius:18px 18px 0 18px;box-shadow:0 4px 24px rgba(137,55,192,0.10);margin-bottom:4px;animation:coach-bubble-in 0.4s cubic-bezier(.6,-0.28,.74,.05) forwards;">
+      Hey Coach!
+    </div>
+    <button id="hey-coach-btn" style="background:linear-gradient(135deg,#5a1590,#8937c0);color:#fff;font-family:'Lexend',sans-serif;font-size:1.1rem;font-weight:700;padding:18px 28px;border:none;border-radius:32px;box-shadow:0 6px 32px rgba(137,55,192,0.18);cursor:pointer;transition:background 0.2s,box-shadow 0.2s;display:flex;align-items:center;gap:10px;">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="11" fill="#fff"/><path d="M7.5 9.5C7.5 8.11929 8.61929 7 10 7C11.3807 7 12.5 8.11929 12.5 9.5C12.5 10.8807 11.3807 12 10 12C8.61929 12 7.5 10.8807 7.5 9.5Z" fill="#8937c0"/><rect x="8.5" y="13" width="3" height="1.5" rx="0.75" fill="#8937c0"/></svg>
+    </button>
+  </div>
+
+  <style>
+    @keyframes coach-bubble-in {
+      0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes coach-bubble-out {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(30px) scale(0.9); }
+    }
+  </style>
+
+  <script>
+    let bubbleTimeout;
+    function showCoachBubble() {
+      const bubble = document.getElementById('hey-coach-bubble');
+      if (!bubble) return;
+      bubble.style.display = 'block';
+      bubble.style.animation = 'coach-bubble-in 0.4s cubic-bezier(.6,-0.28,.74,.05) forwards';
+      clearTimeout(bubbleTimeout);
+      bubbleTimeout = setTimeout(() => {
+        bubble.style.animation = 'coach-bubble-out 0.4s cubic-bezier(.6,-0.28,.74,.05) forwards';
+        setTimeout(() => { bubble.style.display = 'none'; }, 400);
+      }, 2200);
+    }
+    window.addEventListener('scroll', showCoachBubble, { passive: true });
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(showCoachBubble, 800);
+
+      const btn = document.getElementById('hey-coach-btn');
+      if (btn) {
+        btn.addEventListener('click', function() {
+          window.location.href = './aichat.html';
+        });
+      }
+    });
+  </script>
     <div class="list-card">
       <h3>Ce oferim?</h3>
       <ul>

@@ -1,0 +1,104 @@
+gymList.innerHTML=""
+gymList.appendChild(card)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Where to Find Us • PerformX</title>
+	<link rel="stylesheet" href="../css/font.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../css/navbar.css">
+	<link rel="stylesheet" href="../css/aboutus.css">
+</head>
+<body>
+	<div class="nav-wrapper">
+    <nav class="nav">
+        <a href="./index.html" class="logo" aria-label="PerformX Home">
+            <img class="logo-img" src="./images/logo_no_background.png" alt="PerformX Logo">
+        </a>
+
+		<div class="pages">
+			<a href="./index.html" >Home</a>
+			<a href="./shopmain.html">Shop</a>
+			<a href="./about.html">About</a>
+			<a href="./map.html" class="active">Map</a>
+			<a href="./login.html" class="nav-cta">Login</a>
+		</div>
+    </nav>
+</div>
+
+
+	<div class="about-header">
+		<span class="label">Locații PerformX</span>
+		<h1>Where to Find Us</h1>
+		<p style="color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto;">Explore our partner gyms and locations across Romania. See them on the map below!</p>
+	</div>
+
+	<div style="max-width:900px;margin:40px auto 0 auto;">
+		<div id="map" style="height:400px;width:100%;border-radius:16px;overflow:hidden;margin-bottom:40px;"></div>
+	</div>
+
+
+	<div style="max-width:700px;margin:0 auto 60px auto;">
+		<h2 style="font-size:1.4rem;margin:30px 0 18px 0;color:var(--text);font-weight:700;">Our Partners</h2>
+		<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:28px;">
+			<li style="background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px 24px;display:flex;align-items:center;gap:22px;">
+				<span style="font-size:2.2rem;">🏢</span>
+				<div style="flex:1;">
+					<h3 style="margin:0 0 6px 0;font-size:1.2rem;">Stay Fit Gym Bega</h3>
+					<div class="status" style="color:#22c55e;font-weight:600;display:inline-block;margin-bottom:4px;">● OPEN NOW</div>
+					<div class="rating-row" style="margin-bottom:6px;"><span class="star">★ 4.8</span> <span style="color:#a6a8ad;">(245 reviews)</span></div>
+					<div class="equipment-pills">
+						<span class="pill">Squat Racks</span>
+						<span class="pill">Sauna</span>
+						<span class="pill">24/7 Access</span>
+					</div>
+				</div>
+			</li>
+			<li style="background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px 24px;display:flex;align-items:center;gap:22px;">
+				<span style="font-size:2.2rem;">🏋️</span>
+				<div style="flex:1;">
+					<h3 style="margin:0 0 6px 0;font-size:1.2rem;">Gym One 5</h3>
+					<div class="status" style="color:#22c55e;font-weight:600;display:inline-block;margin-bottom:4px;">● OPEN NOW</div>
+					<div class="rating-row" style="margin-bottom:6px;"><span class="star">★ 4.6</span> <span style="color:#a6a8ad;">(189 reviews)</span></div>
+					<div class="equipment-pills">
+						<span class="pill">Deadlift Platforms</span>
+						<span class="pill">Air-Con</span>
+					</div>
+				</div>
+			</li>
+			<li style="background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:28px 24px;display:flex;align-items:center;gap:22px;">
+				<span style="font-size:2.2rem;">💪</span>
+				<div style="flex:1;">
+					<h3 style="margin:0 0 6px 0;font-size:1.2rem;">Extreme Fitness</h3>
+					<div class="status" style="color:#ef4444;font-weight:600;display:inline-block;margin-bottom:4px;">○ CLOSED</div>
+					<div class="rating-row" style="margin-bottom:6px;"><span class="star">★ 4.9</span> <span style="color:#a6a8ad;">(312 reviews)</span></div>
+					<div class="equipment-pills">
+						<span class="pill">Hammer Strength</span>
+						<span class="pill">Boxing Area</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var map = L.map('map').setView([45.7489,21.2257], 13);
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19
+		}).addTo(map);
+		L.marker([45.7489,21.2257]).addTo(map).bindPopup("Stay Fit Gym Bega");
+		L.marker([45.754,21.215]).addTo(map).bindPopup("Gym One 5");
+		L.marker([45.742,21.24]).addTo(map).bindPopup("Extreme Fitness");
+	});
+	</script>
+
+</body>
+</html>
+</html>
