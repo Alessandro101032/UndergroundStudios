@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PerformX | Community</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/community.css">
+</head>
+<body>
+
+<div class="nav-wrapper">
+    <nav class="nav">
+        <a href="./index.html" class="logo">
+            <img class="logo-img" src="./images/logo_no_background.png" alt="PerformX Logo">
+        </a>
+        <div class="pages">
+            <a href="./index.html">Home</a>
+            <a href="./shopmain.html">Shop</a>
+            <a href="./community.html" class="active">Community</a>
+            <a href="./about.html">About</a>
+            <a href="./map.html">Map</a>
+            <a href="./contact.html" class="nav-cta">Contact</a>
+        </div>
+    </nav>
+</div>
+
+<div id="app-shell">
+    <div class="main-content">
+        <div class="mod-label">Mod Tools On</div>
+        
+        <header class="app-header">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Comunitate</h1>
+            <form class="search-bar" onsubmit="return false;">
+                <span class="icon">🔍</span>
+                <input type="text" placeholder="Caută canale sau utilizatori..." />
+            </form>
+        </header>
+
+        <section class="match-section">
+            <span class="section-label">Parteneri recomandați pe baza statisticilor tale</span>
+            <div class="match-scroll">
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar">JD</div>
+                        <div class="match-percent">98%</div>
+                    </div>
+                    <span>John D.</span>
+                </div>
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar" style="background: #8937c0;">SK</div>
+                        <div class="match-percent">94%</div>
+                    </div>
+                    <span>Sarah K.</span>
+                </div>
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar" style="background: #5a1590;">MI</div>
+                        <div class="match-percent">89%</div>
+                    </div>
+                    <span>Mike I.</span>
+                </div>
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar" style="background: #222;">AL</div>
+                        <div class="match-percent">85%</div>
+                    </div>
+                    <span>Alex L.</span>
+                </div>
+                <div class="profile-bubble">
+                    <div class="avatar-container">
+                        <div class="avatar" style="background: #333;">RV</div>
+                        <div class="match-percent">82%</div>
+                    </div>
+                    <span>Ria V.</span>
+                </div>
+            </div>
+        </section>
+
+        <main class="channels">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                <span class="section-label" style="margin: 0;">Canale Active</span>
+                <button class="btn-primary" style="padding: 8px 16px; font-size: 0.8rem; border-radius: 10px;">+ Start New Channel</button>
+            </div>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🏋️</div>
+                <div class="channel-info">
+                    <h3>Training</h3>
+                    <p>Share routines & form checks</p>
+                </div>
+                <div class="unread-badge">12</div>
+            </a>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🥗</div>
+                <div class="channel-info">
+                    <h3>Nutrition</h3>
+                    <p>Meal prep & macro tracking</p>
+                </div>
+            </a>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🤕</div>
+                <div class="channel-info">
+                    <h3>Injury Room</h3>
+                    <p>Recovery tips & support</p>
+                </div>
+                <div class="unread-badge">3</div>
+            </a>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🔥</div>
+                <div class="channel-info">
+                    <h3>Progress Sharing</h3>
+                    <p>Milestones & PRs</p>
+                </div>
+            </a>
+
+            <a href="#" class="channel-card">
+                <div class="channel-icon">🏙️</div>
+                <div class="channel-info">
+                    <h3>Local Discussions</h3>
+                    <p>Meetups in Timișoara</p>
+                </div>
+            </a>
+        </main>
+    </div>
+
+    <aside class="sidebar">
+        <div class="sidebar-box" style="background: #121212; padding: 20px; border-radius: 16px; margin-bottom: 20px;">
+            <h2>Subiecte Trending</h2>
+            <ul>
+                <li>#mealprep</li>
+                <li>#formcheck</li>
+                <li>#injuryrecovery</li>
+                <li>#meetup</li>
+            </ul>
+        </div>
+
+        <div class="sidebar-box" style="background: #121212; padding: 20px; border-radius: 16px; margin-bottom: 20px;">
+            <h2>Online Acum</h2>
+            <div class="online-users">
+                <div class="online-avatar">JD</div>
+                <div class="online-avatar" style="background:#8937c0;">SK</div>
+                <div class="online-avatar" style="background:#5a1590;">MI</div>
+                <div class="online-avatar" style="background:#222;">AL</div>
+                <div class="online-avatar" style="background:#333;">RV</div>
+                <div class="online-avatar" style="border: 1px dashed #444; background: transparent;">+42</div>
+            </div>
+        </div>
+
+        <div class="sidebar-box" style="background: rgba(137, 55, 192, 0.05); padding: 20px; border-radius: 16px; border: 1px solid rgba(137, 55, 192, 0.2);">
+            <h2>Reguli</h2>
+            <ul style="font-size: 0.85rem; color: #9aa0a6;">
+                <li>Respectă ceilalți membri</li>
+                <li>Fără spam sau auto-promovare</li>
+                <li>Susține comunitatea</li>
+            </ul>
+        </div>
+    </aside>
+</div>
+
+<footer style="margin-top: 80px; text-align: center; padding: 40px; border-top: 1px solid #222;">
+    <div class="footer-brand" style="font-weight: 800; font-size: 1.5rem; color: #8937c0;">PerformX</div>
+    <p style="color: #666; font-size: 0.9rem;">© 2025 PerformX Community. Timișoara, România</p>
+</footer>
+
+<script src="../js/auth.js"></script>
+</body>
+</html>

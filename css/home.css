@@ -37,7 +37,7 @@ body {
 .logo-text {
   font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px;
   background: linear-gradient(90deg, #fff, var(--purple-light));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; -webkit-text-fill-color: transparent;
 }
 .pages { display: flex; align-items: center; gap: 2px; }
 .pages a {
@@ -69,7 +69,7 @@ body {
   font-size: clamp(48px, 8vw, 90px);
   letter-spacing: 3px; line-height: 1;
   background: linear-gradient(135deg, #fff, var(--purple-light));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; -webkit-text-fill-color: transparent;
 }
 
 .content { max-width: 960px; margin: 0 auto; padding: 0 20px 100px; }
