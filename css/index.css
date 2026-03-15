@@ -1,3 +1,85 @@
 body{
     background-color: #282628;
-   }
+}
+.events-section {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+    font-family: 'Lexend', sans-serif;
+}
+
+.section-header { margin-bottom: 30px; }
+.section-header h2 { font-size: 2rem; color: #fff; margin-bottom: 10px; }
+.badge-live { 
+    background: #8937c0; 
+    font-size: 0.9rem; 
+    padding: 4px 12px; 
+    border-radius: 20px; 
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, min-max(300px, 1fr));
+    gap: 20px;
+}
+
+.event-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    border-color: #8937c0;
+}
+
+.event-card.featured {
+    background: linear-gradient(135deg, #1a1a1a, #2d1440);
+    border: 1px solid #5a1590;
+}
+
+.event-date {
+    background: #252525;
+    min-width: 70px;
+    padding: 10px;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-date .day { font-size: 1.5rem; font-weight: 800; color: #fff; }
+.event-date .month { font-size: 0.8rem; text-transform: uppercase; color: #8937c0; }
+
+.event-content h3 { margin: 5px 0; font-size: 1.1rem; color: #fff; }
+.event-content p { font-size: 0.9rem; color: #aaa; margin-bottom: 15px; }
+.tag { font-size: 0.7rem; text-transform: uppercase; font-weight: bold; color: #8937c0; }
+
+.btn-event {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-event:hover { background: #8937c0; }
+
+.events-footer { margin-top: 25px; text-align: center; }
+.link-secondary { color: #8937c0; text-decoration: none; font-weight: 600; }
+
+@media (max-width: 768px) {
+    .events-grid { grid-template-columns: 1fr; }
+}
