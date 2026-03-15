@@ -175,20 +175,6 @@ body {
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(137,55,192,0.6); }
 
-footer {
-  border-top: 1px solid var(--border);
-  padding: 28px 40px;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-}
-.footer-brand {
-  font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px;
-  background: linear-gradient(90deg,#fff,var(--purple-light));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-footer p { color: rgba(255,255,255,0.25); font-size: 13px; }
-.footer-links { display: flex; gap: 18px; }
-.footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 600; transition: color .2s; }
-.footer-links a:hover { color: var(--purple-light); }
 
 @media(max-width: 700px) {
   .cards-row, .two-col { grid-template-columns: 1fr; }
